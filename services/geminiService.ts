@@ -1,8 +1,6 @@
 import { GoogleGenAI } from "@google/genai";
 import { DATA } from '../constants';
 
-const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
-
 const SYSTEM_INSTRUCTION = `
 You are an AI assistant for ${DATA.personal.firstName} ${DATA.personal.lastName}'s portfolio website. 
 Your goal is to answer visitor questions about ${DATA.personal.firstName} ${DATA.personal.lastName} based STRICTLY on the provided context data.
@@ -13,8 +11,30 @@ Context Data:
 ${JSON.stringify(DATA, null, 2)}
 `;
 
-export const generateResponse = async (userMessage: string): Promise<string> => {
+// Safely retrieve API Key without crashing in browser
+const getApiKey = () => {
   try {
+    if (typeof process !== 'undefined' && process.env) {
+      return process.env.API_KEY;
+    }
+  } catch (e) {
+    // Ignore error
+  }
+  return "";
+};
+
+export const generateResponse = async (userMessage: string): Promise<string> => {
+  const apiKey = getApiKey();
+
+  if (!apiKey) {
+    console.warn("Gemini API Key is missing.");
+    return "I'm currently offline (API Key missing). Please contact me directly via email for inquiries.";
+  }
+
+  try {
+    // Initialize the client lazily to prevent top-level crashes
+    const ai = new GoogleGenAI({ apiKey });
+    
     const response = await ai.models.generateContent({
       model: 'gemini-3-flash-preview',
       contents: [
