@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Abeer | Portfolio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Dancing+Script:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: {
+              sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+              script: ['"Dancing Script"', 'cursive'],
+              inter: ['Inter', 'sans-serif'],
+            },
+            colors: {
+              background: '#010104', // Pure dark for max contrast
+              surface: '#0F1119',    // Distinct dark grey-blue
+              surfaceHighlight: '#222332', // Lighter highlight for visibility
+              // Dynamic colors using CSS variables
+              primary: 'rgb(var(--color-primary) / <alpha-value>)',
+              secondary: 'rgb(var(--color-secondary) / <alpha-value>)',
+              text: '#FFFFFF',       // Pure White
+              textMuted: '#E2E8F0',  // Slate 200 (Brighter than before)
+              textDim: '#94A3B8',    // Slate 400 (Brighter than before)
+            },
+            boxShadow: {
+              'glow': '0 0 20px rgb(var(--color-primary) / 0.4)',
+            },
+            animation: {
+              'tide-flow': 'tide-flow 15s infinite alternate ease-in-out',
+              'tide-surge': 'tide-surge 20s infinite alternate-reverse ease-in-out',
+              'tide-drift': 'tide-drift 25s infinite linear',
+              'aurora-pulse': 'aurora-pulse 8s infinite alternate ease-in-out',
+            },
+            keyframes: {
+              "tide-flow": {
+                "0%": { transform: "translate(0px, 0px) scale(1)" },
+                "33%": { transform: "translate(30px, -50px) scale(1.1)" },
+                "66%": { transform: "translate(-20px, 20px) scale(0.9)" },
+                "100%": { transform: "translate(0px, 0px) scale(1)" }
+              },
+              "tide-surge": {
+                "0%": { transform: "translate(0%, 10%) rotate(0deg)" },
+                "50%": { transform: "translate(10%, -10%) rotate(5deg)" },
+                "100%": { transform: "translate(-5%, 15%) rotate(-5deg)" }
+              },
+              "tide-drift": {
+                "0%": { transform: "rotate(0deg)" },
+                "100%": { transform: "rotate(360deg)" }
+              },
+              "aurora-pulse": {
+                 "0%": { opacity: "0.3" },
+                 "100%": { opacity: "0.6" }
+              }
+            }
+          }
+        }
+      }
+    </script>
+    <style>
+      :root {
+        /* Default Theme: Deep Orange - Brightened for Dark Mode Contrast */
+        --color-primary: 249 115 22; /* #F97316 (Orange 500) */
+        --color-secondary: 253 186 116; /* #FDBA74 (Orange 300) */
+      }
+
+      body {
+        background-color: #010104;
+        color: #FFFFFF;
+        cursor: none; /* Hide default cursor for custom one */
+      }
+      
+      /* Starfield Pattern */
+      .star-field {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+        z-index: 0;
+        background-image: 
+            radial-gradient(white, rgba(255,255,255,.2) 2px, transparent 3px),
+            radial-gradient(white, rgba(255,255,255,.15) 1px, transparent 2px),
+            radial-gradient(white, rgba(255,255,255,.1) 2px, transparent 3px);
+        background-size: 550px 550px, 350px 350px, 250px 250px; 
+        background-position: 0 0, 40px 60px, 130px 270px;
+      }
+
+      /* Custom scrollbar */
+      ::-webkit-scrollbar {
+        width: 6px;
+      }
+      ::-webkit-scrollbar-track {
+        background: #010104;
+      }
+      ::-webkit-scrollbar-thumb {
+        background: #333;
+        border-radius: 3px;
+      }
+      ::-webkit-scrollbar-thumb:hover {
+        background-color: rgb(var(--color-primary));
+      }
+      
+      /* Smooth text rendering */
+      * {
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+      }
+    </style>
+  <script type="importmap">
+{
+  "imports": {
+    "react/": "https://esm.sh/react@^19.2.3/",
+    "react": "https://esm.sh/react@^19.2.3",
+    "react-dom/": "https://esm.sh/react-dom@^19.2.3/",
+    "lucide-react": "https://esm.sh/lucide-react@^0.562.0",
+    "@google/genai": "https://esm.sh/@google/genai@^1.34.0",
+    "framer-motion": "https://esm.sh/framer-motion@^12.24.5"
+  }
+}
+</script>
+</head>
+  <body>
+    <div id="root"></div>
+  </body>
+</html>
